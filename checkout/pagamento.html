@@ -877,7 +877,6 @@
 <script>
 (function(){
   var loaded=false, loading=false;
-  var CHECKOUT_ALLOWPAY_API_KEY = '';
   var ALLOWPAY_BASE = 'https://allow-gi0i.onrender.com';
   var ALLOWPAY_WEBHOOK_URL = 'https://sualoja.com/webhooks/allowpay';
   var UTMIFY_API_TOKEN = '';
@@ -1042,10 +1041,10 @@
     var redirected=false;
     function checkOnce(){
       if (redirected) return;
-      fetch(ALLOWPAY_BASE + '/api/v2/allowpay-seller/payment-status/' + encodeURIComponent(txId) + '?route=' + encodeURIComponent(currentRoute), {
+      fetch('/api/payment-status?txId=' + encodeURIComponent(txId) + '&route=' + encodeURIComponent(currentRoute), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ api_key: CHECKOUT_ALLOWPAY_API_KEY }),
+        body: JSON.stringify({}),
         cache: 'no-store'
       })
         .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
@@ -1120,7 +1119,6 @@
     try{ if(typeof fbq==='function') fbq('track','InitiateCheckout',{value:amount/100, currency:'BRL'}); }catch(e){}
 
     var payload = {
-      api_key: CHECKOUT_ALLOWPAY_API_KEY,
       amount: amount,
       description: 'Kit 10 Panelas',
       customer: {
@@ -1133,7 +1131,7 @@
       webhook_secret: 'allowpay_webhook_secret'
     };
 
-    fetch(ALLOWPAY_BASE + '/api/v2/allowpay-seller/create-pix', {
+    fetch('/api/create-pix', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

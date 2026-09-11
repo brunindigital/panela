@@ -1,0 +1,1 @@
+import{t as e}from"./index-BoGPMeRw.js";var t=e();function n(){return(0,t.jsx)(`iframe`,{src:`/front/site.html`,title:`Site`,style:{position:`fixed`,inset:0,width:`100%`,height:`100%`,border:`none`}})}export{n as component};

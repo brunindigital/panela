@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./index-BoGPMeRw.js";var r=t(e()),i=n();function a(){let[e,t]=(0,r.useState)(``);return(0,r.useEffect)(()=>{t(location.pathname.replace(/\/?$/,`/`)+`oferta.html`+location.search)},[]),(0,i.jsx)(`iframe`,{src:e,title:`Oferta exclusiva`,style:{position:`fixed`,inset:0,width:`100%`,height:`100%`,border:`none`}})}export{a as component};

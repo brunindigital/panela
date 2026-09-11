@@ -1,0 +1,1 @@
+import{t as e}from"./index-BoGPMeRw.js";var t=e();function n(){return(0,t.jsx)(`iframe`,{src:`/upsell1.html`,title:`Upsell 1`,style:{position:`fixed`,inset:0,width:`100%`,height:`100%`,border:`none`}})}export{n as component};

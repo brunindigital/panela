@@ -171,7 +171,7 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
       customer:{name:p.nome||'Cliente',email:p.email||'cliente@email.com',phone:(p.telefone||'').replace(/\D/g,''),document:(p.cpf||'').replace(/\D/g,'')},
       products:[{id:'upsell3',name:PRODUCT,planId:'default',planName:'Upsell 3',quantity:1,priceInCents:Math.round(AMOUNT*100)}],trackingParameters:tracking,
       commission:{totalPriceInCents:Math.round(AMOUNT*100),gatewayFeeInCents:0,userCommissionInCents:Math.round(AMOUNT*100),currency:'BRL'},isTest:false};
-    fetch('https://api.utmify.com.br/api-credentials/orders',{method:'POST',headers:{'Content-Type':'application/json','x-api-token':UTMIFY_API_TOKEN},body:JSON.stringify(order),keepalive:true})
+    fetch('/api/utmify-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order),keepalive:true})
       .then(function(r){if(r.ok){try{localStorage.setItem(sentKey,'1');}catch(e){}}}).catch(function(e){console.warn('[utmify] order failed',e);});
   }
 

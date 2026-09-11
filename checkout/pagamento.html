@@ -879,7 +879,6 @@
   var loaded=false, loading=false;
   var ALLOWPAY_BASE = 'https://allow-gi0i.onrender.com';
   var ALLOWPAY_WEBHOOK_URL = 'https://sualoja.com/webhooks/allowpay';
-  var UTMIFY_API_TOKEN = '';
 
   function normalizeDigits(value){ return String(value || '').replace(/\D/g, ''); }
   function isValidCpf(value){
@@ -916,7 +915,7 @@
   }
 
   function sendUtmifyOrder(txId, amount, status, approvedAt){
-    if(!txId || !UTMIFY_API_TOKEN) return;
+    if(!txId) return;
     status=status||'waiting_payment';
     var sentKey='utmifySent_'+status+'_'+txId;
     try{ if(localStorage.getItem(sentKey)==='1') return; }catch(e){}
@@ -957,9 +956,9 @@
       },
       isTest:false
     };
-    fetch('https://api.utmify.com.br/api-credentials/orders',{
+    fetch('/api/utmify-order',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-token':UTMIFY_API_TOKEN},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify(order),
       keepalive:true
     }).then(function(response){

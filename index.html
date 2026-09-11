@@ -1,107 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Ativo | HydraHost</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #030712;
-            color: #f8fafc;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .orb-1 {
-            animation: orb-1-move 10s ease-in-out infinite;
-        }
-
-        .orb-2 {
-            animation: orb-2-move 12s ease-in-out infinite;
-        }
-
-        @keyframes orb-1-move {
-
-            0%,
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            33% {
-                transform: translate(40px, 20px) rotate(10deg);
-            }
-
-            66% {
-                transform: translate(-40px, -20px) rotate(-10deg);
-            }
-        }
-
-        @keyframes orb-2-move {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(-40px, -20px);
-            }
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
-</head>
-
-<body class="flex items-center justify-center min-h-screen relative">
-
-    <div class="fixed inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.15),transparent_70%)]"></div>
-
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div
-            class="orb-1 absolute top-1/2 left-1/3 h-64 w-64 rounded-full bg-gradient-to-tr from-purple-600/30 to-fuchsia-500/20 blur-[80px]">
-        </div>
-        <div
-            class="orb-2 absolute right-1/4 bottom-1/3 h-72 w-72 rounded-full bg-gradient-to-br from-violet-500/20 to-pink-500/20 blur-[90px]">
-        </div>
-    </div>
-
-    <div class="relative z-10 text-center px-4 max-w-2xl">
-        <div class="flex flex-col items-center gap-6">
-
-            <div class="space-y-4">
-                <h1
-                    class="text-[120px] md:text-[160px] font-extrabold leading-none tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/20 select-none">
-                    ON
-                </h1>
-                <div class="space-y-2">
-                    <h2 class="text-2xl md:text-3xl font-semibold text-slate-200">Seu site está no ar!</h2>
-                    <p class="text-slate-400 text-lg max-w-md mx-auto">
-                        Acesse o Gerenciador de Arquivos no painel da Hydra Host para substituir este arquivo (index.html) pelo seu projeto.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div
-        class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-600 text-sm tracking-widest uppercase flex items-center gap-2">
-        <div class="h-px w-8 bg-slate-800"></div>
-        HydraHost
-        <div class="h-px w-8 bg-slate-800"></div>
-    </div>
-
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=/front/" />
+    <title>Kit 10 Panelas</title>
     <script>
-        lucide.createIcons();
+      window.location.replace('/front/');
     </script>
-</body>
-
+  </head>
+  <body>
+    <p>Redirecionando...</p>
+  </body>
 </html>

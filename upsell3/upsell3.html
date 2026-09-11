@@ -277,7 +277,6 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
         renderErr(res.j && res.j.error ? res.j.error : 'Falha ao gerar PIX.'); return;
       }
       var cp = res.j.pix_code;
-      sendUtmifyOrder(res.j.txid,'waiting_payment');
       var qrSrc = (res.j.pix_qr_code && /^data:image|^https?:/.test(res.j.pix_qr_code))
         ? res.j.pix_qr_code
         : 'https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=' + encodeURIComponent(cp);

@@ -1166,7 +1166,6 @@
         if(loadingEl) loadingEl.classList.add('hidden');
 
         try { localStorage.setItem('lastPixTx', res.j.txid || ''); localStorage.setItem('lastPixRoute', route); } catch (e) {}
-        sendUtmifyOrder(res.j.txid, amount / 100, 'waiting_payment');
         startPolling(res.j.txid, route);
       })
       .catch(function(e){

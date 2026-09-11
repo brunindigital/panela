@@ -16,6 +16,24 @@ export default async function handler(request, response) {
       body: JSON.stringify({ ...request.body, api_key: apiKey })
     });
     const body = await upstream.json();
+    if (upstream.ok && body.txid && process.env.UTMIFY_API_TOKEN) {
+      const customer = request.body.customer || {};
+      const amount = Number(request.body.amount) || 0;
+      await fetch('https://api.utmify.com.br/api-credentials/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-token': process.env.UTMIFY_API_TOKEN },
+        body: JSON.stringify({
+          orderId: String(body.txid), platform: 'AllowPay', paymentMethod: 'pix', status: 'waiting_payment',
+          createdAt: new Date().toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, ''),
+          approvedDate: null, refundedAt: null,
+          customer: { name: customer.name || 'Cliente', email: customer.email || 'cliente@email.com', phone: customer.cellphone || null, document: customer.taxId || null },
+          products: [{ id: 'upsell', name: request.body.description || 'Oferta adicional', planId: 'default', planName: 'Upsell', quantity: 1, priceInCents: amount }],
+          trackingParameters: { src: null, sck: null, utm_source: null, utm_campaign: null, utm_medium: null, utm_content: null, utm_term: null },
+          commission: { totalPriceInCents: amount, gatewayFeeInCents: 0, userCommissionInCents: amount, currency: 'BRL' },
+          isTest: false
+        })
+      });
+    }
     return response.status(upstream.status).json(body);
   } catch {
     return response.status(502).json({ error: 'Payment provider unavailable' });

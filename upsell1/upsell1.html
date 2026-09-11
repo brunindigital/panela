@@ -148,7 +148,6 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
   var txId = null;
   var redirected = false;
   var STORAGE_KEY = 'pendingUpsellPix_' + location.pathname;
-  var UPSELL_ALLOWPAY_API_KEY = '';
   var ALLOWPAY_BASE = 'https://allow-gi0i.onrender.com';
   var ALLOWPAY_WEBHOOK_URL = 'https://sualoja.com/webhooks/allowpay';
   var UTMIFY_API_TOKEN = '';
@@ -207,10 +206,10 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
     if(pollTimer) clearInterval(pollTimer);
     function checkOnce(){
       if(redirected) return;
-      fetch(ALLOWPAY_BASE + '/api/v2/allowpay-seller/payment-status/' + encodeURIComponent(id) + '?route=' + encodeURIComponent(currentRoute), {
+      fetch('/api/upsell-payment-status?txId=' + encodeURIComponent(id) + '&route=' + encodeURIComponent(currentRoute), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ api_key: UPSELL_ALLOWPAY_API_KEY }),
+        body: JSON.stringify({}),
         cache: 'no-store'
       })
         .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
@@ -255,7 +254,6 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
     body.innerHTML = '<div class="loading"><span class="spinner"></span> Gerando PIX…</div>';
     var p = getPerson();
     var payload = {
-      api_key: UPSELL_ALLOWPAY_API_KEY,
       amount: Math.round(AMOUNT * 100),
       description: PRODUCT,
       customer: {
@@ -267,7 +265,7 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
       webhook_url: ALLOWPAY_WEBHOOK_URL,
       webhook_secret: 'allowpay_webhook_secret'
     };
-    fetch(ALLOWPAY_BASE + '/api/v2/allowpay-seller/create-pix', {
+    fetch('/api/upsell-create-pix', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

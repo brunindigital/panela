@@ -3,7 +3,7 @@ export default async function handler(request, response) {
     return response.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.CHECKOUT_ALLOWPAY_API_KEY;
+  const apiKey = process.env.CHECKOUT_ALLOWPAY_API_KEY || process.env.ALLOWPAY_API_KEY;
   const baseUrl = process.env.ALLOWPAY_BASE || 'https://allow-gi0i.onrender.com';
   const txId = request.query.txId;
   const route = request.query.route || 'fyntra';

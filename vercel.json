@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/checkout",
+      "destination": "/checkout/",
+      "permanent": false
+    },
+    {
+      "source": "/checkout/pagamento.html",
+      "destination": "/checkout/",
+      "permanent": false
+    },
+    {
       "source": "/pagamento",
       "destination": "/checkout",
       "permanent": false
@@ -9,6 +19,12 @@
       "source": "/pagamento/",
       "destination": "/checkout",
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/checkout/",
+      "destination": "/checkout/pagamento.html"
     }
   ]
 }

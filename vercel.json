@@ -6,11 +6,6 @@
       "permanent": false
     },
     {
-      "source": "/checkout/pagamento.html",
-      "destination": "/checkout/",
-      "permanent": false
-    },
-    {
       "source": "/pagamento",
       "destination": "/checkout",
       "permanent": false

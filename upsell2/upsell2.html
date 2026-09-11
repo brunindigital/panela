@@ -171,7 +171,7 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
       customer:{name:p.nome||'Cliente',email:p.email||'cliente@email.com',phone:(p.telefone||'').replace(/\D/g,''),document:(p.cpf||'').replace(/\D/g,'')},
       products:[{id:'upsell2',name:PRODUCT,planId:'default',planName:'Upsell 2',quantity:1,priceInCents:Math.round(AMOUNT*100)}],trackingParameters:tracking,
       commission:{totalPriceInCents:Math.round(AMOUNT*100),gatewayFeeInCents:0,userCommissionInCents:Math.round(AMOUNT*100),currency:'BRL'},isTest:false};
-    fetch('/api/utmify-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order),keepalive:true})
+    return fetch('/api/utmify-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(order),keepalive:true})
       .then(function(r){if(r.ok){try{localStorage.setItem(sentKey,'1');}catch(e){}}}).catch(function(e){console.warn('[utmify] order failed',e);});
   }
 
@@ -229,7 +229,7 @@ h1{font-size:27px;font-weight:800;line-height:1.2;text-align:center;letter-spaci
           try{ if(typeof fbq!=='function'){ var img=new Image(); img.src='https://www.facebook.com/tr/?id=2442971489550167&ev=Purchase&cd[value]='+AMOUNT+'&cd[currency]=BRL&eid='+encodeURIComponent(eventId)+'&noscript=1&rl='+Date.now(); window.__fbPurchaseBeacon=img; } }catch(e){}
           open();
           renderSuccess();
-          setTimeout(function(){ window.top.location.href = NEXT; }, 200);
+          setTimeout(function(){ window.top.location.href = NEXT; }, 1500);
         })
         .catch(function(){});
     }

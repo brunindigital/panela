@@ -956,7 +956,7 @@
       },
       isTest:false
     };
-    fetch('/api/utmify-order',{
+    return fetch('/api/utmify-order',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(order),
@@ -1076,11 +1076,13 @@
             try{ localStorage.setItem('upsellRedirect_'+txId, JSON.stringify(_payload)); }catch(e){}
             console.log('[funnel] upsell_redirect', _payload);
           }catch(e){}
-          if(location.protocol==='file:'){
-            window.top.location.href='../upsell1/upsell1.html';
-          } else {
-            window.top.location.href='/upsell1';
-          }
+          setTimeout(function(){
+            if(location.protocol==='file:'){
+              window.top.location.href='../upsell1/upsell1.html';
+            } else {
+              window.top.location.href='/upsell1';
+            }
+          },1500);
         })
         .catch(function(){});
     }
